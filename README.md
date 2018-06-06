@@ -3,6 +3,8 @@
 ```sh
 $ mkdir -p ~/go/github.com/asicsdigital
 $ pushd ~/go/github.com/asicsdigital
+$ git clone https://github.com/asicsdigital/envconsul_reference
+$ cd envconsul_reference
 $ go build
 ```
 
