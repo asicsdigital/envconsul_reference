@@ -9,5 +9,7 @@ $ go build
 # Run
 ```sh
 $ HELLO_NAME=Steve ./envconsul_reference &
-$ curl http://localhost:3000
+$ curl http://localhost:8080
 ```
+
+Pass env var `PORT` to listen on a different port.

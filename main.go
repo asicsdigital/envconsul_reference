@@ -8,16 +8,19 @@ import (
   "github.com/urfave/negroni"
 )
 
+const (
+  NameEnvVar  = "HELLO_NAME"
+  DefaultName = "world"
+)
+
 func main() {
   mux := http.NewServeMux()
-  mux.HandleFunc("/", func(w http.ResponseWriter, req *http.Request) {
-    fmt.Fprintf(w, "Hello %s!", getEnv("HELLO_NAME", "world"))
-  })
+  mux.HandleFunc("/", handlerHello)
 
   n := negroni.Classic()
   n.UseHandler(mux)
 
-  http.ListenAndServe(":3000", n)
+  n.Run()
 }
 
 func getEnv(envVar string, defaultVal string) string {
@@ -28,4 +31,8 @@ func getEnv(envVar string, defaultVal string) string {
   } else {
     return ret
   }
+}
+
+func handlerHello(w http.ResponseWriter, req *http.Request) {
+  fmt.Fprintf(w, "Hello %s!", getEnv(NameEnvVar, DefaultName))
 }
